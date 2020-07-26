@@ -39,7 +39,7 @@ class Home extends Component {
 		const name=e.target.name;
 		const value=e.target.value;
 		this.setState({[name]: value},
-									() => {this.validate(name, value)});
+			() => {this.validate(name, value)});
 	}
 
 	validate(name, value) {
@@ -52,8 +52,7 @@ class Home extends Component {
 		formErrors.location = locationValid ? '' : ' is invalid';
 
 		this.setState({formErrors: formErrors,
-              locationValid:locationValid,
-              
+			locationValid:locationValid,
             }, this.validateForm);
 
 	}
@@ -66,9 +65,9 @@ class Home extends Component {
 
 		let urlString = "http://api.openweathermap.org/data/2.5/weather?q=" + this.state.location.replace(/[ ]/g, '+') + ",US&appid=" + AppID + "&units=imperial"
 		console.log(urlString);
-	  fetch(urlString)
-      .then(response => response.json())
-      .then(data => this.setState({ webResponse: data }));
+		fetch(urlString)
+			.then(response => response.json())
+			.then(data => this.setState({ webResponse: data }));
      
 	}	
 
@@ -108,13 +107,12 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-			<div className="Home">
+				<div className="Home">
 				
-						<div className="col-md-6 my-2">
-							<form>
+					<div className="col-md-6 my-2">
+						<form>
 							<table>
 								<tr>
-
 									<td className="col-md-6 py-3  ">
 										<label htmlFor='location' className={`form-group ${this.errorClass(this.state.formErrors.location)}`}>Location (e.g. "New York, NY"):</label>
 										<input
@@ -134,9 +132,9 @@ class Home extends Component {
 										<button disabled={!this.state.formValid} type="button" onClick={(e) => this.locationSubmit(e)} className="btn btn-primary">Submit</button>
 									</td>
 								</tr>
-						</table>
+							</table>
 						</form>
-						</div>
+					</div>
 
 
 			<div className="col-md-6">
