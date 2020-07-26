@@ -16,7 +16,7 @@ class Footer extends Component {
     return (
       <div className="pl-2 ">
         <Navbar className="MenuBar" bg="light" expand="lg">
-          <p>From, Connor</p>
+          <p></p>
         </Navbar>
       </div>
       

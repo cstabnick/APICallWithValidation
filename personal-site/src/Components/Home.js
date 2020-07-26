@@ -1,5 +1,7 @@
 import React ,{Component} from 'react';
 
+const AppID = "Your app id here!";
+
 const FormErrors = ({formErrors}) =>
   <div className='formErrors'>
     {Object.keys(formErrors).map((fieldName, i) => {
@@ -41,21 +43,18 @@ class Home extends Component {
 	}
 
 	validate(name, value) {
-	  let formErrors = this.state.formErrors;
-  	  let locationValid = this.state.locationValid;
-  	
+		let formErrors = this.state.formErrors;
+		let locationValid = this.state.locationValid;
 
-	  switch(name) {
-	    case 'location':
-	      locationValid = !!value.match(/^([A-Za-z ]{1,50}),([ ]{0,4})([A-Za-z]{2})$/g);
-	      formErrors.location = locationValid ? '' : ' is invalid';
-	      break;
-	  }
+
+
+		locationValid = !!value.match(/^([A-Za-z ]{1,50}),([ ]{0,4})([A-Za-z]{2})$/g);
+		formErrors.location = locationValid ? '' : ' is invalid';
 
 		this.setState({formErrors: formErrors,
-                  locationValid:locationValid,
-                  
-                }, this.validateForm);
+              locationValid:locationValid,
+              
+            }, this.validateForm);
 
 	}
 
@@ -64,9 +63,8 @@ class Home extends Component {
 	}
 
 	locationSubmit(e) {
-		// http://api.openweathermap.org/data/2.5/weather?q=Rochester,MO,US&appid=90c00c88be1860c99a7bbe032ac5339a
 
-		let urlString = "http://api.openweathermap.org/data/2.5/weather?q=" + this.state.location.replace(/[ ]/g, '+') + ",US&appid=90c00c88be1860c99a7bbe032ac5339a&units=imperial"
+		let urlString = "http://api.openweathermap.org/data/2.5/weather?q=" + this.state.location.replace(/[ ]/g, '+') + ",US&appid=" + AppID + "&units=imperial"
 		console.log(urlString);
 	  fetch(urlString)
       .then(response => response.json())
@@ -79,6 +77,7 @@ class Home extends Component {
 	errorClass(error) {
 	   return(error.length === 0 ? '' : 'has-error');
 	}
+
 
 	getWebResponse(){
 		if (!!this.state.webResponse && !!this.state.webResponse.main ){
